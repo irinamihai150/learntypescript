@@ -85,3 +85,16 @@ var myEnum;
     myEnum[myEnum["mySecondConst"] = 1] = "mySecondConst";
 })(myEnum || (myEnum = {}));
 console.log(myEnum);
+var carYear = 2001;
+var carType = "Toyota";
+var carModel = "Corolla";
+var rectangle = {
+    height: 20,
+    width: 20,
+};
+console.log(rectangle);
+var coloredRectangle = {
+    height: 20,
+    width: 20,
+    color: "red",
+};
