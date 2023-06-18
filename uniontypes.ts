@@ -79,10 +79,10 @@ function multiply(a: number, b: number) {
 type Negate = (value: number) => number
 
 // in this function, the parameter `value` automatically gets assigned the type `number` from the type `Negate`
-const negateFunction: Negate = (value) => value * -1;
+const negateFunction: Negate = (value) => value * -1
 
-//typescript Casting => 
-// There are times when working with types where it's necessary to override the 
+//typescript Casting =>
+// There are times when working with types where it's necessary to override the
 // type of a variable, such as when incorrect types are provided by a library.
 
 // Casting is the process of overriding a type.
@@ -95,11 +95,9 @@ console.log((x as string).length)
 // let x: unknown = 4;
 // console.log((x as string).length); // prints undefined since numbers don't have a length
 
-
 // TypeScript will still attempt to typecheck casts to prevent casts that don't seem correct, for example the following will throw a type error since TypeScript knows casting a string to a number doesn't makes sense without converting the data:
 // console.log((4 as string).length); // Error: Conversion of type 'number' to type 'string' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
 // The Force casting section below covers how to override this.
-
 
 // Casting with <>
 // Using <> works the same as casting with as.
@@ -108,11 +106,82 @@ console.log((x as string).length)
 // let x: unknown = 'hello';
 // console.log((<string>x).length);
 
-
-
 // Force casting
 // To override type errors that TypeScript may throw when casting, first cast to unknown, then to the target type.
 // let x = 'hello';
-// console.log(((x as unknown) as number).length); 
+// console.log(((x as unknown) as number).length);
 // x is not actually a number so this will return undefined
 
+// Members: Types
+// The members of a class (properties & methods) are typed using type annotations, similar to variables.
+//example :
+class Person {
+	name: string
+}
+
+const person = new Person()
+person.name = "Jane"
+
+//members:visibility
+//  class members also be given special modifiers which affect visibility
+// There are three main visibility modifiers in TypeScript.
+
+// public - (default) allows access to the class member from anywhere
+// private - only allows access to the class member from within the class
+// protected - allows access to the class member from itself and any classes that inherit it, which is covered in the inheritance section below
+//example
+
+// class Person {
+//   private name: string;
+
+//   public constructor(name: string) {
+//     this.name = name;
+//   }
+
+//   public getName(): string {
+//     return this.name;
+//   }
+// }
+
+// const person = new Person("Jane");
+// console.log(person.getName()); // person.name isn't accessible from outside the class since it's private
+
+
+// The this keyword in a class usually refers to the instance of the class. Read more about this here.
+
+
+// Parameter Properties
+// TypeScript provides a convenient way to define class members in the constructor, by adding a visibility modifiers to the parameter.
+
+// Example
+// class Person {
+//   // name is a private member variable
+//   public constructor(private name: string) {}
+
+//   public getName(): string {
+//     return this.name;
+//   }
+// }
+
+// const person = new Person("Jane");
+// console.log(person.getName());
+
+// Readonly
+// Similar to arrays, the readonly keyword can prevent class members from being changed.
+
+// Example
+// class Person {
+//   private readonly name: string;
+
+//   public constructor(name: string) {
+//     // name cannot be changed after this initial definition, which has to be either at it's declaration or in the constructor.
+//     this.name = name;
+//   }
+
+//   public getName(): string {
+//     return this.name;
+//   }
+// }
+
+// const person = new Person("Jane");
+// console.log(person.getName());
