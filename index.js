@@ -1,12 +1,9 @@
 // define our tuple
-let ourTuple: [number, boolean, string];
-
+var ourTuple;
 // initialize correctly
 ourTuple = [5, false, 'Coding God was here'];
-
 // We have no type safety in our tuple for indexes 3+
 ourTuple.push('Something new and wrong');
-
 console.log(ourTuple);
-let message: string = "Hello World"
+var message = "Hello World";
 console.log(message);
